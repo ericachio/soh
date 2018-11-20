@@ -1,0 +1,62 @@
+body, html{
+	height: 95%;
+	margin: 0;
+}
+
+body {
+    background-image: url("background.jpg");
+    height: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+h1, h2, h3, p{
+	text-align: center;
+	color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    .1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+h1{
+	font-size: 75px;
+}
+h2{
+	font-size: 50px;
+}
+
+p{
+	font-size: 25px;
+}
+
+.bvideo, .blink, .bimage, .btext {
+    display: inline-block;
+    position: relative;
+    margin: 1%;
+    float: left;
+    width: 23%;
+    height: 200px;
+    background-color: lightgrey;
+    opacity: 0.5;
+    border-radius: 25px;
+}
+
+.objects{
+    display: inline-block;
+    position: relative;
+    margin: 1%;
+    float: left;
+    width: 65%;
+    height: 200px;
+    background-color: lightgrey;
+    opacity: 0.5;
+    border-radius: 25px;
+}
+
+.bvideo:hover, .blink:hover, .bimage:hover, .btext:hover{
+	opacity: 0.85;
+}
