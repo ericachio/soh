@@ -55,8 +55,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+var string1 = "name";
 // ---------------------------------------------------
 //passport app
+
+app.get('/profile', function(req, res){
+	res.render('profile', {Message: string1});
+});
 
 // app.get('/login', function(req, res){
 // 	res.render('login', {message: req.flash('loginMessage')});
