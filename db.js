@@ -4,6 +4,27 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const URLSlugs = require('mongoose-url-slugs');
 
+const Strengths = new mongoose.Schema({
+  first: String,
+  second: String,
+  third: String,
+  username: String
+});
+
+const threeStrengths = new mongoose.Schema({
+	strengths: [Strengths]
+});
+
+const Weaknesses = new mongoose.Schema({
+  first: String,
+  second: String,
+  third: String,
+  username: String
+});
+
+const threeWeaknesses = new mongoose.Schema({
+	weaknesses: [Weaknesses]
+});
 // users
 // have a username and password
 const User = new mongoose.Schema({
@@ -11,7 +32,8 @@ const User = new mongoose.Schema({
 		username: String,
   		password: String,
 	},
-	
+	Strengths: [Strengths],
+	Weaknesses: [Weaknesses]
 });
 
 // methods ======================
@@ -27,12 +49,12 @@ User.methods.validPassword = function(password) {
 
 // TODO: add remainder of setup for slugs, connection, registering models, etc. below
 
-Playlist.plugin(URLSlugs('name'));
-
 // mongoose.model('User', User);
 module.exports = mongoose.model('User', User);
-
-
+mongoose.model('Strengths', Strengths);
+mongoose.model('threeStrengths', threeStrengths);
+mongoose.model('Weaknesses', Weaknesses);
+mongoose.model('threeWeaknesses', threeWeaknesses);
 
 //UNSURE IF NEED THIS 
 // ---------------------------------------------------
@@ -53,7 +75,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://localhost/finalprojconfig';
+ dbconf = 'mongodb://localhost/sohfinalprojconfig';
 }
 
-mongoose.connect(dbconf);
+mongoose.connect(dbconf, { useNewUrlParser: true });
