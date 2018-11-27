@@ -153,7 +153,7 @@ app.get('/mystrengths', isLoggedIn, function(req, res) {
 
 app.post('/mystrengthsedit', isLoggedIn, function(req, res) {
 
-	if (req.body.firstStrength.length >= 2 && req.body.secondStrength.length >= 2 && req.body.thirdStrength.length >= 2){
+	if (req.body.firstStrength.length >= 2 && req.body.secondStrength.length >= 2 && req.body.thirdStrength.length >= 2 && noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
 		new Strengths({
 			first: req.body.firstStrength, 
 			second: req.body.secondStrength,
@@ -165,7 +165,12 @@ app.post('/mystrengthsedit', isLoggedIn, function(req, res) {
 			});	
 		});
 	}else{
-		res.render('strengthsedit', {error: "please choose all three options"});
+		if(!noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
+			res.render('strengthsedit', {error: "please choose three UNIQUE options"});
+		}
+		else{
+			res.render('strengthsedit', {error: "please choose ALL three options"});
+		}
 	}
 });
 
@@ -174,7 +179,7 @@ app.get('/myweaknesses', isLoggedIn, function(req, res) {
 });
 
 app.post('/myweaknessesedit', isLoggedIn, function(req, res) {
-	if (req.body.firstWeakness.length >= 2 && req.body.secondWeakness.length >= 2 && req.body.thirdWeakness.length >= 2){
+	if (req.body.firstWeakness.length >= 2 && req.body.secondWeakness.length >= 2 && req.body.thirdWeakness.length >= 2 && noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
 		new Weaknesses({
 			first: req.body.firstWeakness, 
 			second: req.body.secondWeakness,
@@ -186,7 +191,18 @@ app.post('/myweaknessesedit', isLoggedIn, function(req, res) {
 			});	
 		});
 	}else{
-		res.render('weaknessesedit', {error: "please choose all three options"});
+		if(!noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
+			res.render('weaknessesedit', {error: "please choose three UNIQUE options"});
+		}
+		else{
+			res.render('weaknessesedit', {error: "please choose ALL three options"});
+		}
 	}
 });
 app.listen(process.env.PORT || 3000);
+
+
+function noRepetition(s, s2, s3){
+	if(s === s2 || s2===s3 || s2 === s3) return false;
+	else return true;
+}
