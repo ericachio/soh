@@ -4,6 +4,13 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const URLSlugs = require('mongoose-url-slugs');
 
+const strengthOBJ = new mongoose.Schema({
+  name: String, 
+  description: String,
+  strength_exercises: String,
+  weakness_exercises: String
+});
+
 const Strengths = new mongoose.Schema({
   first: String,
   second: String,
@@ -11,9 +18,6 @@ const Strengths = new mongoose.Schema({
   username: String
 });
 
-const threeStrengths = new mongoose.Schema({
-	strengths: [Strengths]
-});
 
 const Weaknesses = new mongoose.Schema({
   first: String,
@@ -22,9 +26,6 @@ const Weaknesses = new mongoose.Schema({
   username: String
 });
 
-const threeWeaknesses = new mongoose.Schema({
-	weaknesses: [Weaknesses]
-});
 // users
 // have a username and password
 const User = new mongoose.Schema({
@@ -32,8 +33,8 @@ const User = new mongoose.Schema({
 		username: String,
   		password: String,
 	},
-	Strengths: [Strengths],
-	Weaknesses: [Weaknesses]
+	Strengths: Strengths,
+	Weaknesses: Weaknesses
 });
 
 // methods ======================
@@ -52,10 +53,7 @@ User.methods.validPassword = function(password) {
 // mongoose.model('User', User);
 module.exports = mongoose.model('User', User);
 mongoose.model('Strengths', Strengths);
-mongoose.model('threeStrengths', threeStrengths);
 mongoose.model('Weaknesses', Weaknesses);
-mongoose.model('threeWeaknesses', threeWeaknesses);
-
 //UNSURE IF NEED THIS 
 // ---------------------------------------------------
 

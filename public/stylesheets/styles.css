@@ -45,6 +45,22 @@ p{
     border-radius: 25px;
 }
 
+.profiletext {
+    display: inline-block;
+    position: relative;
+    margin: 1%;
+    float: left;
+    width: 46%;
+    height: 200px;
+    background-color: lightgrey;
+    opacity: 0.5;
+    border-radius: 25px;
+}
+
+optgroup {
+    font-size: 21px;
+}
+
 .objects{
     display: inline-block;
     position: relative;
