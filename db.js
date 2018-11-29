@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const URLSlugs = require('mongoose-url-slugs');
 
-const strengthOBJ = new mongoose.Schema({
+const Strengthobj = new mongoose.Schema({
   name: String, 
   description: String,
-  strength_exercises: String,
-  weakness_exercises: String
+  exercises: String
 });
+
 
 const Strengths = new mongoose.Schema({
   first: String,
@@ -26,6 +26,18 @@ const Weaknesses = new mongoose.Schema({
   username: String
 });
 
+const Progress = new mongoose.Schema({
+  username: String,
+  characterstrength: String,
+  helpful: String,
+  again: String,
+  carryover: String,
+  carryovercomment: String,
+  friend: String,
+  extracomment: String
+});
+
+
 // users
 // have a username and password
 const User = new mongoose.Schema({
@@ -34,7 +46,8 @@ const User = new mongoose.Schema({
   		password: String,
 	},
 	Strengths: Strengths,
-	Weaknesses: Weaknesses
+	Weaknesses: Weaknesses,
+  Progress: [Progress]
 });
 
 // methods ======================
@@ -54,6 +67,9 @@ User.methods.validPassword = function(password) {
 module.exports = mongoose.model('User', User);
 mongoose.model('Strengths', Strengths);
 mongoose.model('Weaknesses', Weaknesses);
+mongoose.model('Strengthobj', Strengthobj);
+mongoose.model('Progress', Progress);
+
 //UNSURE IF NEED THIS 
 // ---------------------------------------------------
 

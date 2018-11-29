@@ -1,0 +1,39 @@
+<br>
+
+
+<body>
+<center>
+
+	<div id="header">
+		<h1> This is Exercise This is Exercise </h1>
+		<h2> Exercise Exercise Exercise</h2>
+		<h3> read to the tune of "this is halloween" </h3>
+	</div>
+
+
+	{{#if error}}
+   		<h3 class="alert">{{error}}</h3>
+	{{/if}}
+
+	{{#if firstS}}
+		<form method="GET" action="/pickexercise">
+			<select name="strengthexercise">
+				<option value="">--Please choose an option--</option>
+					<optgroup label="Top Strengths">
+						<option value="{{firstS}}"> {{firstS}} </option>
+						<option value="{{secondS}}"> {{secondS}} </option>
+						<option value="{{thirdS}}"> {{thirdS}} </option>
+					</optgroup>
+					<optgroup label="Bottom Strengths">
+						<option value="{{firstW}}"> {{firstW}} </option>
+						<option value="{{secondW}}"> {{secondW}} </option>
+						<option value="{{thirdW}}"> {{thirdW}} </option>
+					</optgroup>
+			</select>
+			<input type="submit">
+		</form>
+		
+	{{/if}}
+
+</center>
+</body>

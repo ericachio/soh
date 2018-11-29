@@ -15,6 +15,11 @@ require('./db'); //for mongoose
 // npm install mongoose
 // npm install bcrypt-nodejs
 // npm install mongoose-url-slug
+// sudo npm install -g nodemon
+
+// nodemon app.js
+
+
 // node app.js
 // curl -i localhost:3000
 
@@ -69,6 +74,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const Strengths = mongoose.model('Strengths');
 const Weaknesses = mongoose.model('Weaknesses');
 const User = mongoose.model('User');
+const Strengthobj = mongoose.model('Strengthobj');
+const Progress = mongoose.model('Progress');
 
 var string1 = "name";
 // ---------------------------------------------------
@@ -199,6 +206,107 @@ app.post('/myweaknessesedit', isLoggedIn, function(req, res) {
 		}
 	}
 });
+
+app.get('/exercise', isLoggedIn, function(req, res) {
+	User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+		if (resultOfQuery.Strengths == undefined || resultOfQuery.Weaknesses == undefined){
+			let errormessage = "Your profile is incomplete! Go to the profile page to complete it.";
+			res.render('exercise', {error: errormessage});
+		}else{
+			s1 = resultOfQuery.Strengths.first;
+			s2 = resultOfQuery.Strengths.second;
+			s3 = resultOfQuery.Strengths.third;
+			w1 = resultOfQuery.Weaknesses.first;
+			w2 = resultOfQuery.Weaknesses.second;
+			w3 = resultOfQuery.Weaknesses.third;
+			res.render('exercise', {firstS: s1, secondS: s2, thirdS: s3, firstW: w1, secondW: w2, thirdW: w3});
+		}
+	});
+});
+
+app.get('/pickexercise', isLoggedIn, function(req, res) {
+	if (req.query.strengthexercise.length >= 2){
+		Strengthobj.findOne({"name":req.query.strengthexercise} , (err, resultOfQuery) =>{
+			console.log(resultOfQuery);
+			let infoName = resultOfQuery.name;
+			let infoDescription = resultOfQuery.description;
+			let infoExercises = resultOfQuery.exercises;
+				User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+					if (resultOfQuery.Strengths == undefined || resultOfQuery.Weaknesses == undefined){
+						let errormessage = "Your profile is incomplete! Go to the profile page to complete it.";
+						res.render('exercise', {error: errormessage});
+					}else{
+						s1 = resultOfQuery.Strengths.first;
+						s2 = resultOfQuery.Strengths.second;
+						s3 = resultOfQuery.Strengths.third;
+						w1 = resultOfQuery.Weaknesses.first;
+						w2 = resultOfQuery.Weaknesses.second;
+						w3 = resultOfQuery.Weaknesses.third;
+						res.render('exerciseformed', {firstS: s1, secondS: s2, thirdS: s3, firstW: w1, secondW: w2, thirdW: w3, infoN: infoName, infoD: infoDescription, infoE: infoExercises});
+					}
+				});
+		});
+	}
+});
+
+app.get('/progress', isLoggedIn, function(req, res) {
+	User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+		if (resultOfQuery.Strengths == undefined || resultOfQuery.Weaknesses == undefined){
+			let errormessage = "Your profile is incomplete! Go to the profile page to complete it.";
+			res.render('progress', {error: errormessage});
+		}else{
+			s1 = resultOfQuery.Strengths.first;
+			s2 = resultOfQuery.Strengths.second;
+			s3 = resultOfQuery.Strengths.third;
+			w1 = resultOfQuery.Weaknesses.first;
+			w2 = resultOfQuery.Weaknesses.second;
+			w3 = resultOfQuery.Weaknesses.third;
+			res.render('progress', {firstS: s1, secondS: s2, thirdS: s3, firstW: w1, secondW: w2, thirdW: w3});
+		}
+	});
+});
+
+app.post('/progressreport', isLoggedIn, function(req, res) {
+	if (req.body.characterstrength.length >= 2 && req.body.helpful.length >= 2 &&
+		req.body.again.length >= 2 && req.body.carryover.length >= 2 &&
+		req.body.carryovercomment.length >= 2 && req.body.friend.length >= 2 &&
+		req.body.extracomment.length >= 2){
+		new Progress({
+			username: req.user.local.username,
+			characterstrength: req.body.characterstrength,
+			helpful: req.body.helpful,
+			again: req.body.again,
+			carryover: req.body.carryover,
+			carryovercomment: req.body.carryovercomment,
+			friend: req.body.friend,
+			extracomment: req.body.extracomment
+		}).save((err,result) => {
+			User.findOneAndUpdate({"_id":req.user.id}, {$push: {Progress: result}}, (err) => {
+				res.redirect('/profile');
+			});	
+		});
+		
+	}
+});
+
+app.get('/allprogressreports', isLoggedIn, function(req, res) {
+	User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+		if (resultOfQuery.Progress == undefined ){
+			let errormessage = "You don't have any progress reports, make some!";
+			res.render('allprogressreports', {error: errormessage});
+		}else{
+			Progress.find({}, function(err, resultOfQuery) {
+				let result = resultOfQuery.filter((x) => {
+					if (x.username === req.user.local.username){
+						return x;
+					}	
+				});
+				res.render('allprogressreports', {all: result});				
+			});
+		}
+	});
+});
+
 app.listen(process.env.PORT || 3000);
 
 
