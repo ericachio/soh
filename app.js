@@ -159,7 +159,7 @@ app.get('/mystrengths', isLoggedIn, function(req, res) {
 
 app.post('/mystrengthsedit', isLoggedIn, function(req, res) {
 
-	if (req.body.firstStrength.length >= 2 && req.body.secondStrength.length >= 2 && req.body.thirdStrength.length >= 2 && noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
+	if (req.body.firstStrength.length >= 2 && req.body.secondStrength.length >= 2 && req.body.thirdStrength.length >= 2 && noRepetition(req.body.firstStrength, req.body.secondStrength, req.body.thirdStrength)){
 		new Strengths({
 			first: req.body.firstStrength, 
 			second: req.body.secondStrength,
