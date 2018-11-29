@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../db');
 
 module.exports = function(passport){
+    console.log("SUCCESS\n\n\n\n\n\n\n\n\n\n\n")
     passport.serializeUser(function(user, done){
         done(null, user.id);
     });
@@ -21,9 +22,7 @@ module.exports = function(passport){
     },
     function(req, username, password, done) {
         process.nextTick(function() {
-            console.log("FIRST SUCCESS \n\n\n\n\n\n\n\n\n");
             User.findOne({ 'local.username' :  username }, function(err, user) {
-            console.log("SECOND SUCCESS \n\n\n\n\n\n\n\n\n");
                 if (err){
                     return done(err);
                 }
