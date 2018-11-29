@@ -89,7 +89,8 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://localhost/sohfinalprojconfig';
+ //dbconf = 'mongodb://localhost/sohfinalprojconfig';
+ dbconf = 'mongodb://ebc308:721Babychio!@ds121624.mlab.com:21624/soh';
 }
 
 mongoose.connect(dbconf, { useNewUrlParser: true });
