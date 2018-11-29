@@ -171,7 +171,7 @@ app.post('/mystrengthsedit', isLoggedIn, function(req, res) {
 			});	
 		});
 	}else{
-		if(!noRepetition(req.body.firstWeakness, req.body.secondWeakness, req.body.thirdWeakness)){
+		if(!noRepetition(req.body.firstStrength, req.body.secondStrength, req.body.thirdStrength)){
 			res.render('strengthsedit', {error: "please choose three UNIQUE options"});
 		}
 		else{
@@ -307,7 +307,8 @@ app.get('/allprogressreports', isLoggedIn, function(req, res) {
 });
 
 //app.listen(process.env.PORT || 3000);
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
+mongoose.connect()
 
 
 function noRepetition(s, s2, s3){
