@@ -307,8 +307,8 @@ app.get('/allprogressreports', isLoggedIn, function(req, res) {
 });
 
 //app.listen(process.env.PORT || 3000);
-//app.listen(process.env.PORT || 3000);
-mongoose.connect()
+app.listen(process.env.PORT || 3000);
+//mongoose.connect()
 
 
 function noRepetition(s, s2, s3){
