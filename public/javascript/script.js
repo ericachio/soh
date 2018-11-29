@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$("#header").hide().delay(300).fadeIn(3000);
 	$("#follow").hide().delay(800).fadeIn(3000);
+	$("#follow2").hide().delay(1300).fadeIn(3000);
 
 	var boxdelay = 700;
 	var increment = 400;
