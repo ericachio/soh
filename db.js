@@ -119,7 +119,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
     // Connection URL. This is where your mongodb server is running.
 
     //(Focus on This Variable)
-    var url = 'mongodb://ebc308:721Babychio!@ds121624.mlab.com:21624/soh';      
+    var url = 'mongodb://erica:721ericachio@ds121624.mlab.com:21624/soh';      
     //(Focus on This Variable)
 
     // Use connect method to connect to the Server
