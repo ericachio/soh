@@ -122,7 +122,7 @@ mongoose.model('Progress', Progress);
     var url = 'mongodb://erica:721ericachio@ds044577.mlab.com:44577/soh';      
     //(Focus on This Variable)
     // Use connect method to connect to the Server
-      MongoClient.connect(url, function (err, db) {
+      mongodb.MongoClient.connect(url, function (err, db) {
       if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
       } else {
