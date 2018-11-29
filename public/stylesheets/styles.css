@@ -158,7 +158,7 @@ optgroup {
     border-radius: 25px;
 }
 
-.bvideo:hover, .blink:hover, .bimage:hover, .btext:hover, .backbutton:hover{
+.bvideo:hover, .blink:hover, .bimage:hover, .btext:hover, .backbutton:hover, .profiletext:hover{
 	opacity: 0.9;
 }
 
