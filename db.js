@@ -121,23 +121,20 @@ mongoose.model('Progress', Progress);
     //(Focus on This Variable)
     var url = 'mongodb://erica:721ericachio@ds044577.mlab.com:44577/soh';      
     //(Focus on This Variable)
-    mongoose.connect('mongodb://erica:721ericachio@ds044577.mlab.com:44577/soh', {
-      keepAlive:true;
-    });
-
     // Use connect method to connect to the Server
-    //   MongoClient.connect(url, function (err, db) {
-    //   if (err) {
-    //     console.log('Unable to connect to the mongoDB server. Error:', err);
-    //   } else {
-    //     console.log('Connection established to', url);
+      MongoClient.connect(url, function (err, db) {
+      console.log("SUCCESS\n\n\n\n\n\n\n\n\n\n")
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        console.log('Connection established to', url);
 
-    //     // do some work here with the database.
+        // do some work here with the database.
 
-    //     //Close connection
-    //     db.close();
-    //   }
-    // });
+        //Close connection
+        db.close();
+      }
+    });
 //}
 
 
