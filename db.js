@@ -131,7 +131,6 @@ mongoose.model('Progress', Progress);
         // do some work here with the database.
 
         //Close connection
-        db.close();
       }
     });
 //}
