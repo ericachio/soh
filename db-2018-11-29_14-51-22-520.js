@@ -96,20 +96,20 @@ mongoose.model('Progress', Progress);
 // mongoose.connect(dbconf, { useNewUrlParser: true });
 
 //____________________________________________________
-// if (process.env.NODE_ENV === 'PRODUCTION') {
-//  // if we're in PRODUCTION mode, then read the configration from a file
-//  // use blocking file io to do this...
-//  const fs = require('fs');
-//  const path = require('path');
-//  const fn = path.join(__dirname, 'config.json');
-//  const data = fs.readFileSync(fn);
+if (process.env.NODE_ENV === 'PRODUCTION') {
+ // if we're in PRODUCTION mode, then read the configration from a file
+ // use blocking file io to do this...
+ const fs = require('fs');
+ const path = require('path');
+ const fn = path.join(__dirname, 'config.json');
+ const data = fs.readFileSync(fn);
 
-//  // our configuration file will be in json, so parse it and set the
-//  // conenction string appropriately!
-//  const conf = JSON.parse(data);
-//  dbconf = conf.dbconf;
-//  mongoose.connect(dbconf, { useNewUrlParser: true });
-// } else {
+ // our configuration file will be in json, so parse it and set the
+ // conenction string appropriately!
+ const conf = JSON.parse(data);
+ dbconf = conf.dbconf;
+ mongoose.connect(dbconf, { useNewUrlParser: true });
+} else {
     //lets require/import the mongodb native drivers.
     var mongodb = require('mongodb');
 
@@ -119,7 +119,7 @@ mongoose.model('Progress', Progress);
     // Connection URL. This is where your mongodb server is running.
 
     //(Focus on This Variable)
-    var url = 'mongodb://erica:721ericachio@ds044577.mlab.com:44577/soh';      
+    var url = 'mongodb://erica:721ericachio@ds121624.mlab.com:21624/soh';      
     //(Focus on This Variable)
 
     // Use connect method to connect to the Server
@@ -135,7 +135,9 @@ mongoose.model('Progress', Progress);
         db.close();
       }
     });
-//}
+}
+
+
 
 
 
