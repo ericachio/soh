@@ -77,7 +77,6 @@ const User = mongoose.model('User');
 const Strengthobj = mongoose.model('Strengthobj');
 const Progress = mongoose.model('Progress');
 
-var string1 = "name";
 // ---------------------------------------------------
 //passport app
 
@@ -307,7 +306,8 @@ app.get('/allprogressreports', isLoggedIn, function(req, res) {
 	});
 });
 
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
+app.listen(process.env.MONGODB_URI || 3000);
 
 
 function noRepetition(s, s2, s3){

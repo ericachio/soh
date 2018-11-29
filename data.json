@@ -11,6 +11,3 @@ db.strengthobjs.insert({name: "judgement", description: "when you a judgemental 
 db.strengthobjs.insert({name : "loveoflearning", description : "ew who even likes school, nerd", exercises : "stay in school kids"})
 db.strengthobjs.insert({name : "persepective", description : "uh u can see?", exercises : "if you can't get glasses"})
 
-
-
-db.reviews.insert({ courseNumber: "CSCI-UA.0101", courseName: "Intro to CS", semester: "Fall", year: 2015, professor: "McTeacherson", review: "Now I can sort like pro!" });
