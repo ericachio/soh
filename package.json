@@ -1,0 +1,36 @@
+{
+  "name": "soh",
+  "version": "1.0.0",
+  "description": "soh.",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.15.6",
+    "hbs": "^4.0.1",
+    "jquery": "^3.3.1",
+    "express": "^4.16.4",
+    "mongoose-url-slugs": "^1.0.2",
+    "mongoose": "^5.3.13",
+    "morgan": "^1.9.1",
+    "passport-local": "^1.0.0",
+    "passport": "^0.4.0",
+    "request": "^2.88.0",
+    "views": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericachio/soh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericachio/soh/issues"
+  },
+  "homepage": "https://github.com/ericachio/soh#readme"
+}
