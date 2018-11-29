@@ -6,8 +6,10 @@
 
 	<div id="header">
 		<h1> This is Exercise This is Exercise </h1>
-		<h2> Exercise Exercise Exercise</h2>
-		<h3> read to the tune of "this is halloween" </h3>
+	</div>
+
+	<div id="follow">
+		<h2 > Exercise Exercise Exercise</h2>
 	</div>
 
 
@@ -16,7 +18,7 @@
 	{{/if}}
 
 	{{#if firstS}}
-		<form method="GET" action="/pickexercise">
+		<form method="GET" action="/pickexercise" class="bform">
 			<select name="strengthexercise">
 				<option value="">--Please choose an option--</option>
 					<optgroup label="Top Strengths">
@@ -30,10 +32,11 @@
 						<option value="{{thirdW}}"> {{thirdW}} </option>
 					</optgroup>
 			</select>
-			<input type="submit">
+			<input class="submitbutton" type="submit">
 		</form>
 		
 	{{/if}}
+	<a href="/homepage" class="backbutton"><p style="font-size:20px;">Back<p></a>
 
 </center>
 </body>
