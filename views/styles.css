@@ -12,7 +12,7 @@ body {
 }
 
 
-h1, h2, h3, p{
+h1, h2, h3, p, th, td{
 	text-align: center;
 	color: white;
     text-shadow:
@@ -31,7 +31,7 @@ h2{
 h3{
     font-size: 35px;
 }
-p{
+p {
 	font-size: 25px;
 }
 

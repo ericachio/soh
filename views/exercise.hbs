@@ -5,13 +5,8 @@
 <center>
 
 	<div id="header">
-		<h1> This is Exercise This is Exercise </h1>
+		<h1> Learn About Your Character Strength </h1>
 	</div>
-
-	<div id="follow">
-		<h2 > Exercise Exercise Exercise</h2>
-	</div>
-
 
 	{{#if error}}
    		<h3 class="alert">{{error}}</h3>
@@ -21,15 +16,41 @@
 		<form method="GET" action="/pickexercise" class="bform">
 			<select name="strengthexercise">
 				<option value="">--Please choose an option--</option>
-					<optgroup label="Top Strengths">
+					<optgroup label="Your Top Strengths">
 						<option value="{{firstS}}"> {{firstS}} </option>
 						<option value="{{secondS}}"> {{secondS}} </option>
 						<option value="{{thirdS}}"> {{thirdS}} </option>
 					</optgroup>
-					<optgroup label="Bottom Strengths">
+					<optgroup label="Your Bottom Strengths">
 						<option value="{{firstW}}"> {{firstW}} </option>
 						<option value="{{secondW}}"> {{secondW}} </option>
 						<option value="{{thirdW}}"> {{thirdW}} </option>
+					</optgroup>
+					<optgroup label="Explore the Other Strengths">
+						<option value="Creativity"> Creativity </option>
+						<option value="Curiosity"> Curiosity </option>
+						<option value="Judgement"> Judgement </option>
+						<option value="Love of Learning"> Love of Learning </option>
+						<option value="Perspective"> Perspective </option>
+						<option value="Bravery"> Bravery </option>
+						<option value="Honesty"> Honesty </option>
+						<option value="Perseverance"> Perseverance </option>
+						<option value="Zest"> Zest </option>
+						<option value="Kindness"> Kindness </option>
+						<option value="Love"> Love </option>
+						<option value="Social Intelligence"> Social Intelligence </option>
+						<option value="Fairness"> Fairness </option>
+						<option value="Leadership"> Leadership </option>
+						<option value="Teamwork"> Teamwork </option>
+						<option value="Forgiveness"> Forgiveness</option>
+						<option value="Humility"> Humility</option>
+						<option value="Prudence"> Prudence </option>
+						<option value="Self Regulation"> Self Regulation</option>
+						<option value="Appreciation of Beauty"> Appreciation of Beauty </option>
+						<option value="Gratitude"> Gratitude </option>
+						<option value="Hope"> Hope </option>
+						<option value="Humor"> Humor </option>
+						<option value="Spirituality"> Spirituality </option>
 					</optgroup>
 			</select>
 			<input class="submitbutton" type="submit">
