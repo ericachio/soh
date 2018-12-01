@@ -267,9 +267,7 @@ app.get('/progress', isLoggedIn, function(req, res) {
 
 app.post('/progressreport', isLoggedIn, function(req, res) {
 	if (req.body.characterstrength.length >= 2 && req.body.helpful.length >= 2 &&
-		req.body.again.length >= 2 && req.body.carryover.length >= 2 &&
-		req.body.carryovercomment.length >= 2 && req.body.friend.length >= 2 &&
-		req.body.extracomment.length >= 2){
+		req.body.again.length >= 2 && req.body.carryover.length >= 2 && req.body.friend.length >= 2){
 		console.log("why tf");
 		new Progress({
 			username: req.user.local.username,
