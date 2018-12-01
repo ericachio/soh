@@ -266,24 +266,65 @@ app.get('/progress', isLoggedIn, function(req, res) {
 });
 
 app.post('/progressreport', isLoggedIn, function(req, res) {
-	if (req.body.characterstrength.length >= 2 && req.body.helpful.length >= 2 &&
+	if (req.body.characterstrength == undefined || req.body.helpful == undefined || req.body.again == undefined || 
+		req.body.carryover == undefined || req.body.friend == undefined){
+		User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+			if (resultOfQuery.Strengths == undefined || resultOfQuery.Weaknesses == undefined){
+				let errormessage = "Your profile is incomplete! Go to the profile page to complete it.";
+				res.render('progress', {error: errormessage});
+			}else{
+				s1 = resultOfQuery.Strengths.first;
+				s2 = resultOfQuery.Strengths.second;
+				s3 = resultOfQuery.Strengths.third;
+				w1 = resultOfQuery.Weaknesses.first;
+				w2 = resultOfQuery.Weaknesses.second;
+				w3 = resultOfQuery.Weaknesses.third;
+				res.render('progress', {firstS: s1, secondS: s2, thirdS: s3, firstW: w1, secondW: w2, thirdW: w3, error: "fill out all the questions"});
+			}
+		});
+	}
+	else if (req.body.characterstrength.length >= 2 && req.body.helpful.length >= 2 &&
 		req.body.again.length >= 2 && req.body.carryover.length >= 2 && req.body.friend.length >= 2){
-		console.log("why tf");
+		if (req.body.carryovercomment == undefined){
+			carryovercomment = "";
+		}else{
+			carryovercomment = req.body.carryovercomment;
+		}
+		if (req.body.extracomment == undefined){
+			extracomment = "";
+		}else{
+			extracomment = req.body.extracomment;
+		}
 		new Progress({
 			username: req.user.local.username,
 			characterstrength: req.body.characterstrength,
 			helpful: req.body.helpful,
 			again: req.body.again,
 			carryover: req.body.carryover,
-			carryovercomment: req.body.carryovercomment,
+			carryovercomment: carryovercomment,
 			friend: req.body.friend,
-			extracomment: req.body.extracomment
+			extracomment: extracomment
 		}).save((err,result) => {
 			User.findOneAndUpdate({"_id":req.user.id}, {$push: {Progress: result}}, (err) => {
 				res.redirect('/profile');
 			});	
 		});
 		
+	}else{ 
+		User.findOne({"_id":req.user.id} , (err, resultOfQuery) =>{
+			if (resultOfQuery.Strengths == undefined || resultOfQuery.Weaknesses == undefined){
+				let errormessage = "Your profile is incomplete! Go to the profile page to complete it.";
+				res.render('progress', {error: errormessage});
+			}else{
+				s1 = resultOfQuery.Strengths.first;
+				s2 = resultOfQuery.Strengths.second;
+				s3 = resultOfQuery.Strengths.third;
+				w1 = resultOfQuery.Weaknesses.first;
+				w2 = resultOfQuery.Weaknesses.second;
+				w3 = resultOfQuery.Weaknesses.third;
+				res.render('progress', {firstS: s1, secondS: s2, thirdS: s3, firstW: w1, secondW: w2, thirdW: w3, error: "fill out all the questions"});
+			}
+		});
 	}
 });
 
